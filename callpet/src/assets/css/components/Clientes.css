@@ -1,0 +1,11 @@
+body{
+    margin: 0;
+    background-color: #cdcdcd;
+}
+.root{
+    flex-grow: 1;
+}
+.button{
+    background-color: orange;
+    color: white;
+}

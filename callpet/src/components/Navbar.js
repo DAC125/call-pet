@@ -1,6 +1,6 @@
 import React from 'react';
 import {makeStyles} from '@material-ui/core/styles'
-import {makeAppBar, Toolbar, IconButton, Typography, AppBar} from '@material-ui/core'
+import {Toolbar, IconButton, Typography, AppBar} from '@material-ui/core'
 import callpet_logo from '../assets/img/call-pet_logo.png'
 
 const useStyles = makeStyles(()=>({
