@@ -1,42 +1,21 @@
 import React from 'react';
-import {makeStyles} from '@material-ui/core/styles'
 import {Toolbar, IconButton, Typography, AppBar} from '@material-ui/core'
 import callpet_logo from '../assets/img/call-pet_logo.png'
+import '../assets/css/components/Navbar.css'
 
-const useStyles = makeStyles(()=>({
-
-    root:{
-        flexGrow: 1,
-    },
-    menuButton:{
-        marginRight: '16px'
-    },
-    title:{
-        flexGrow: 1
-    },
-    imagen:{
-        borderRadius: '50%',
-        padding: '14px 14px 5px 14px',
-        backgroundColor: '#ffffff'
-    },
-    navbar:{
-        background: '#800080'
-    }
-}));
 
 function Navbar() {
-    const classes = useStyles();
     return (
-        <div className={classes.root}>
-            <AppBar position="static" className={classes.navbar}>
+        <div className='root'>
+            <AppBar position="static" className='navbar'>
                 <Toolbar>
                     <IconButton color="inherit">
-                        <div className={classes.imagen}>
+                        <div className='imagen'>
                             <img src={callpet_logo} alt="" width="60px" height="60px" />
                         </div>
                         
                     </IconButton>
-                    <Typography variant="h6" className={classes.title}>
+                    <Typography variant="h6" className='title'>
                         Call - Pet
                     </Typography>
                     

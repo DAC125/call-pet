@@ -1,0 +1,23 @@
+.root{
+    flex-grow: 1;
+    padding: 20px;
+    background: #fff
+}
+.button{
+    background: #fff;
+    text-transform: unset;
+}
+.textColor{
+    color:#800080
+}
+.textName{
+    
+    text-align:center;
+    color: #00458c
+}
+.imagen{
+    border-radius: 50%;
+    background-color: #ffffff;
+    text-align: center;
+    
+}

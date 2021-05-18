@@ -1,0 +1,17 @@
+.root{
+    flex-grow: 1;
+}
+.menuButton{
+    margin-right: 16px;
+}
+.title{
+    flex-grow: 1;
+}
+.imagen{
+    border-radius: 50%;
+    padding: 14px 14px 5px 14px;
+    background-color: #ffffff;
+}
+.navbar{
+    background: #800080;
+}

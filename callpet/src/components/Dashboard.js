@@ -1,14 +1,14 @@
 import React from 'react';
-import {makeStyles} from '@material-ui/core/styles';
 import 'fontsource-roboto';
 import '../assets/css/components/Dashboard.css';
+import BarChart from './BarChart'
 
 
 
 function Dashboard(props) {
     return(
         <div>
-            Dashboard
+            <BarChart/>
         </div>
 
     )

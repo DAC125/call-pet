@@ -5,8 +5,7 @@ import Navbar from './Navbar';
 import 'fontsource-roboto';
 import 'fontsource-roboto';
 import Menu from './Menu';
-import Clientes from './Clientes/Clientes';
-import InputClientes from './Clientes/InputClientes';
+import Clientes from './Clientes';
 import Dashboard from './Dashboard';
 import {BrowserRouter, Switch, Route} from 'react-router-dom';
 
@@ -40,7 +39,8 @@ function Container(props) {
                
                         <BrowserRouter> 
                             <Switch>
-                                <Route exact path="/" component = {InputClientes}/>
+                                <Route exact path="/" component = {Dashboard}/>
+                                <Route exact path="/Dashboard" component = {Dashboard}/>
                                 <Route exact path="/Clientes" component = {Clientes}/>
                             </Switch>
                         </BrowserRouter>
