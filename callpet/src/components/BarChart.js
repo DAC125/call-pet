@@ -3,10 +3,12 @@ import { Line } from 'react-chartjs-2'
 
 class BarChart extends Component{
     constructor(props){
+        console.log([props.lista])
         super(props);
         this.state = {
             chartData:{
-                labels:['alimento1','alimento2','alimento3','alimento4','alimento5','alimento6'],
+
+                labels:props.lista,
                 datasets:[
                     {
                         label: 'cantidad',
