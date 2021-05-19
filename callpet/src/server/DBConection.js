@@ -9,4 +9,10 @@ const config = {
 
 const pool = new Pool(config);
 
-module.exports = pool;
+const GetAimeno = async () =>{
+    const res = await pool.query('select marca from alimento');
+    console.log(res.rows);
+};
+
+GetAimeno();
+
