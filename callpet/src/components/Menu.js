@@ -17,10 +17,10 @@ const img_user = '';
         
         return (
             <div className='root'>
-                <div>
+                <div className='credentials'>
                     <div className='imagen'>
                         
-                        <img className='imagen' src={img_user===''?(empty_user):(img_user)} alt="" width="60px" height="60px" />
+                        <img className='imagen' src={img_user===''?(empty_user):(img_user)} alt=""     width= '110px' height='100px' />
                     </div>
                     <h2 className='textName'>Carlo Andrés</h2>
                 </div>
@@ -30,7 +30,7 @@ const img_user = '';
                     className='button'
                     startIcon={<TimelineRoundedIcon />}
                     href='/'>
-                    <h7 className='textColor'>Dashboard</h7>
+                    <h4 className='textColor'>Dashboard</h4>
                 </Button>
 
                 </div>
@@ -40,7 +40,7 @@ const img_user = '';
                     className='button'
                     startIcon={<PeopleAltIcon />} 
                     href='/Clientes'>
-                    <h7 className='textColor'>Clientes</h7>
+                    <h4 className='textColor'>Clientes</h4>
                 </Button>
                         
                 </div>
@@ -50,7 +50,7 @@ const img_user = '';
                     className='button'
                     startIcon={<PetsIcon />}
                     href='/Mascotas'>
-                    <h7 className='textColor'>Mascotas</h7>
+                    <h4 className='textColor'>Mascotas</h4>
                 </Button>
                 </div>
 
@@ -59,7 +59,7 @@ const img_user = '';
                     className='button'
                     startIcon={<AssignmentIcon />}
                     href='/Pedidos'>
-                    <h7 className='textColor'>Pedidos</h7>
+                    <h4 className='textColor'>Pedidos</h4>
                 </Button>
                    
                 </div>
@@ -68,7 +68,7 @@ const img_user = '';
                     className='button'
                     startIcon={<OutdoorGrillRoundedIcon />}
                     href='/Alimentos'>
-                    <h7 className='textColor'>Alimentos</h7>
+                    <h4 className='textColor'>Alimentos</h4>
                 </Button>
                 </div>
 
@@ -76,8 +76,9 @@ const img_user = '';
                 <Button
                     className='button'
                     startIcon={<LocalShippingRoundedIcon />}
+                    
                     href='/Proveedores'>
-                    <h7 className='textColor'>Proveedores</h7>
+                    <h4 className='textColor'>Proveedores</h4>
                 </Button>
                 </div>
 
@@ -86,7 +87,7 @@ const img_user = '';
                     className='button'
                     startIcon={<SettingsRoundedIcon />}
                     href='/Configuracion'>
-                    <h7 className='textColor'>Configuracion</h7>
+                    <h4 className='textColor'>Configuracion</h4>
                 </Button>
                 </div>
             </div>

@@ -3,12 +3,19 @@
     padding: 20px;
     background: #fff
 }
+.credentials{
+    padding-bottom: 50px;
+}
 .button{
+    padding: 14px 10px!important;
     background: #fff;
-    text-transform: unset;
+    text-transform: unset!important;
+}
+.button:hover{
+    color: #FF7F50;
 }
 .textColor{
-    color:#800080
+    color:#800080;
 }
 .textName{
     

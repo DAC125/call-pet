@@ -6,7 +6,7 @@ import '../assets/css/components/Navbar.css'
 
 function Navbar() {
     return (
-        <div className='root'>
+        <div >
             <AppBar position="static" className='navbar'>
                 <Toolbar>
                     <IconButton color="inherit">
