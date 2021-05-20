@@ -12,7 +12,7 @@ class BarChart extends Component{
                 datasets:[
                     {
                         label: 'cantidad',
-                        data:[5,6,7,8,10,15],
+                        data:[5,6,7,14,10,15],
                         backgroundColor: '#800080'
                     }
                 ]
