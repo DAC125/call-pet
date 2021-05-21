@@ -29,6 +29,16 @@ app.get("/dashboard",async (req, res) => {
 });
 
 
+app.get("/mascotas",async (req, res) => {
+    try {
+        const allMascotas = await pool.query("select * from mascota");
+        res.json(allMascotas.rows)
+    } catch (err) {
+        console.error(err.message);
+    }
+});
+
+
 app.listen(5000,() =>{
     console.log("server has started on port 5000")
 });

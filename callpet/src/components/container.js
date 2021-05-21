@@ -6,6 +6,7 @@ import 'fontsource-roboto';
 import Menu from './Menu';
 import Clientes from './Clientes';
 import Dashboard from './Dashboard';
+import Mascotas from './Mascotas';
 import {BrowserRouter, Switch, Route} from 'react-router-dom';
 
 
@@ -31,6 +32,7 @@ function Container(props) {
                                 <Route exact path="/" component = {Dashboard}/>
                                 <Route exact path="/Dashboard" component = {Dashboard}/>
                                 <Route exact path="/Clientes" component = {Clientes}/>
+                                <Route exact path="/Mascotas" component = {Mascotas}/>
                             </Switch>
                         </BrowserRouter>
                     
