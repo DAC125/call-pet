@@ -1,12 +1,21 @@
+
 body{
     margin: 0;
     background-color: #cdcdcd;
-
 }
 
 .content{
-    padding: 20px;
+    padding: 10px;
 }
-.charts{
+
+.cardsContainer{
+    padding: 10px;
+}
+.chartsContainer{
+    padding: 10px;
+}
+
+.chart{
     background-color: #fff;
+    box-shadow: 0 20px 20px -20px rgb(0 0 0 / 30%), 0 0 15px rgb(0 0 0 / 6%);
 }

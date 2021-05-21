@@ -1,18 +1,21 @@
 import React,{Component} from 'react'
 import { Line } from 'react-chartjs-2'
 
+
 class BarChart extends Component{
     constructor(props){
-        console.log([props.lista])
+        console.log(props.names)
+        console.log(props.values)
         super(props);
         this.state = {
             chartData:{
 
-                labels:props.lista,
+                /*labels:['lista','lista'],*/
+                labels:props.names,
                 datasets:[
                     {
                         label: 'cantidad',
-                        data:[5,6,7,14,10,15],
+                        data: props.values,
                         backgroundColor: '#800080'
                     }
                 ]
@@ -20,12 +23,14 @@ class BarChart extends Component{
         }
     }
 
+    
+    
     render(){
     return (
         <div>
             <Line 
             data={this.state.chartData}
-            height={400}
+            height={801}
             width={600}
             options={{
                 maintainAspectRatio: false,
