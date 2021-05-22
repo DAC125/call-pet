@@ -39,6 +39,7 @@ function DoughnutChart (props){
                     {
                      
                         data: mayoriaEspecie.map(consumo =>(consumo.count)),
+                        backgroundColor: ['#800080','#FF7F50','#ffaf7a']
                     }
                 ]
             }}

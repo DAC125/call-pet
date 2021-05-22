@@ -29,7 +29,7 @@ function Dashboard(props) {
                 </Grid>
                 <Grid item className='cardsContainer' xs={3}>
                     <div>
-                        <Card name='test' body='Some quick example text to build on the card title and make up the bulk of the card' graph={<DoughnutChart data="/dashboard/mayoriaEspecies"/> }/>
+                        <Card name='Cantidad de especies' body='Principales especies de animales más frecuentes ' graph={<DoughnutChart data="/dashboard/mayoriaEspecies"/> }/>
                     </div>
                 </Grid>
             </Grid>

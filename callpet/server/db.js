@@ -30,13 +30,12 @@ app.get("/dashboard/alimentoConsumo",async (req, res) => {
 
 app.get("/dashboard/mayoriaEspecies",async (req, res) => {
     try {
-        const mayoriaEspecies = await pool.query("select especie, count(especie) from mascota group by especie limit 3");
+        const mayoriaEspecies = await pool.query("select especie, count(especie) from mascota group by especie order by count desc limit 3");
         res.json(mayoriaEspecies.rows)
     } catch (err) {
         console.error(err.message);
     }
 });
-
 
 app.get("/mascotas",async (req, res) => {
     try {
