@@ -1,18 +1,18 @@
 import React,{useEffect,useState} from 'react'
-import { Line } from 'react-chartjs-2'
+import { Doughnut } from 'react-chartjs-2'
 
 
-function LineChart (props){
+function DoughnutChart (props){
 
-    const [consumoAlimentos, setConsumoAlimentos] = useState([]);
+    const [mayoriaEspecie, setmayoriaEspecie] = useState([]);
     
-    const getConsumoAlimentos = async () => {
+    const getmayoriaEspecie = async () => {
         try {
             const response = await fetch("http://localhost:5000"+props.data)
             const jasonData = await response.json();
 
             
-           setConsumoAlimentos(jasonData);
+           setmayoriaEspecie(jasonData);
                 
             
                
@@ -22,32 +22,28 @@ function LineChart (props){
     }
     
     useEffect(()=> {
-        getConsumoAlimentos();         
+        getmayoriaEspecie();         
     }, []);
     
-    console.log(consumoAlimentos)
+    console.log(mayoriaEspecie)
     
     
     return (
         <div>
-            <Line 
+            <Doughnut 
             data={{
 
                 /*labels:['lista','lista'],*/
-                labels:consumoAlimentos.map(consumo =>(consumo.marca)),
+                labels:mayoriaEspecie.map(consumo =>(consumo.especie)),
                 datasets:[
                     {
-                        label: 'cantidad',
-                        data: consumoAlimentos.map(consumo =>(consumo.count)),
-                        backgroundColor: '#800080'
+                     
+                        data: mayoriaEspecie.map(consumo =>(consumo.count)),
                     }
                 ]
             }}
-            height={800}
-            width={600}
             options={{
                 maintainAspectRatio: false,
-                
             }}
             />
       </div>
@@ -55,4 +51,4 @@ function LineChart (props){
         
 }
 
-export default LineChart
+export default DoughnutChart;
