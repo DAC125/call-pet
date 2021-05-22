@@ -1,8 +1,8 @@
 import React,{useEffect,useState} from 'react'
-import { Line } from 'react-chartjs-2'
+import { Bar } from 'react-chartjs-2'
 
 
-function LineChart (props){
+function BarChart (props){
 
     const [data, setdata] = useState([]);
     
@@ -30,14 +30,14 @@ function LineChart (props){
     
     return (
         <div>
-            <Line 
+            <Bar 
             data={{
 
                 /*labels:['lista','lista'],*/
                 labels:data.map(consumo =>(consumo.labels)),
                 datasets:[
                     {
-                        label: props.title,
+                        label: 'cantidad',
                         data: data.map(consumo =>(consumo.values)),
                         backgroundColor: '#800080'
                     }
@@ -55,4 +55,4 @@ function LineChart (props){
         
 }
 
-export default LineChart
+export default BarChart

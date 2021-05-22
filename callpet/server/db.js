@@ -17,11 +17,9 @@ app.get("/clientes",async (req, res) => {
     }
 });
 
-
-
 app.get("/dashboard/alimentoConsumo",async (req, res) => {
     try {
-        const alimentoConsumo = await pool.query("select a.marca ,count(m.id_alimento) from mascota m, alimento a where m.id_alimento = a.id group by marca");
+        const alimentoConsumo = await pool.query("select a.marca as labels ,count(m.id_alimento) as values from mascota m, alimento a where m.id_alimento = a.id group by marca");
         res.json(alimentoConsumo.rows)
     } catch (err) {
         console.error(err.message);
@@ -30,7 +28,7 @@ app.get("/dashboard/alimentoConsumo",async (req, res) => {
 
 app.get("/dashboard/mayoriaEspecies",async (req, res) => {
     try {
-        const mayoriaEspecies = await pool.query("select especie, count(especie) from mascota group by especie order by count desc limit 3");
+        const mayoriaEspecies = await pool.query("select especie as labels, count(especie) as values from mascota group by especie order by values desc limit 3");
         res.json(mayoriaEspecies.rows)
     } catch (err) {
         console.error(err.message);
@@ -45,7 +43,6 @@ app.get("/mascotas",async (req, res) => {
         console.error(err.message);
     }
 });
-
 
 app.listen(5000,() =>{
     console.log("server has started on port 5000")

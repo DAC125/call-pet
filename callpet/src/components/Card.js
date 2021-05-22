@@ -9,8 +9,8 @@ function Card(props) {
                     
                     <Grid container>
                         <Grid item xs={6}>
-                        <h5 class="card-title">{props.name}</h5>
-                            <p class="card-text ">{props.body}</p>
+                        <h5 className="card-title">{props.name}</h5>
+                            <p  className="card-text ">{props.body}</p>
                         </Grid>
 
                         <Grid item xs={6}>
