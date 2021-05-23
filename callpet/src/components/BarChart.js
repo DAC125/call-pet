@@ -37,10 +37,12 @@ function BarChart (props){
                 labels:data.map(consumo =>(consumo.labels)),
                 datasets:[
                     {
-                        label: 'cantidad',
+                        label: props.title,
+                        
                         data: data.map(consumo =>(consumo.values)),
-                        backgroundColor: '#800080'
-                    }
+                        backgroundColor: '#ffaf7a'
+                    },
+                    
                 ]
             }}
             height={props.height}

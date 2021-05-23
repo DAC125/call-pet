@@ -7,25 +7,28 @@ import LineChart from './LineChart'
 import BarChart from './BarChart'
 import DoughnutChart from './DoughnutChart'
 import Card from './Card'
+import Circle from './Circle'
+
 
 function Dashboard(props) {
+    
     
     return (
         <Grid container className='content'>
             <Grid container >
                 <Grid item className='cardsContainer' xs={3}>
                     <div>
-                        <Card name='test' body='Some quick example text to build on the card title and make up the bulk of the card' />
+                        <Card name='Cantidad de clientes' body='Cantidad de clientes registrados en empresa' graph={<Circle  color='#FF7F50' data='/dashboard/cantClientes'/>} />
                     </div>
                 </Grid>
                 <Grid item className='cardsContainer' xs={3}>
                     <div>
-                        <Card name='test' body='Some quick example text to build on the card title and make up the bulk of the card'/>
+                        <Card name='Cantidad de mascotas' body='Cantidad de mascotas registradas en empresa' graph={<Circle  color='#800080' data='/dashboard/cantMascotas'/>} />
                     </div>
                 </Grid>
                 <Grid item className='cardsContainer' xs={3}>
                     <div>
-                        <Card name='test' body='Some quick example text to build on the card title and make up the bulk of the card' graph={<LineChart data="/dashboard/mayoriaEspecies"  width='600' height='200'/> } />
+                        <Card  name='Proveedores con mayor compra' body='Proveedores que surte mas productos a la empresa' graph={<BarChart data="/dashboard/mayoriaProveedores"  width='600' height='200' title='Alimentos por proveedor'/> } />
                     </div>
                 </Grid>
                 <Grid item className='cardsContainer' xs={3}>

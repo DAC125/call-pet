@@ -39,7 +39,7 @@ function LineChart (props){
                     {
                         label: props.title,
                         data: data.map(consumo =>(consumo.values)),
-                        backgroundColor: '#800080'
+                        backgroundColor: ['#FF7F50','#800080','#FF7F50','#800080']
                     }
                 ]
             }}
@@ -47,6 +47,7 @@ function LineChart (props){
             width={props.width}
             options={{
                 maintainAspectRatio: false,
+                borderColor: '#ffaf7a'
                 
             }}
             />

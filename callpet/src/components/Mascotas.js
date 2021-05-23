@@ -26,6 +26,7 @@ function Clientes(props) {
     console.log(clientes);
     return(
         <div>
+                     
            <table className="tableList table">
                 <thead>
                     <tr>
