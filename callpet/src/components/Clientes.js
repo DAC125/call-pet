@@ -1,12 +1,13 @@
 import React, {useEffect,useState} from 'react';
 import 'fontsource-roboto';
+import {Modal} from 'react-bootstrap'
 import '../assets/css/components/Clientes.css';
-
 
 
 function Clientes(props) {
 
     const [clientes, setClientes] = useState([]);
+    const [modalIsOpen, setModalIsOpen] = useState([]);
 
     const getClientes = async() => {
         try {
@@ -26,7 +27,7 @@ function Clientes(props) {
     console.log(clientes);
     return(
         <div>
-           <table className="tableList table">
+            <table className="tableList table">
                 <thead>
                     <tr>
                     <th scope="col">id</th>

@@ -1,5 +1,5 @@
 .root{
-    height: 130VH;
+    height: 100%;
     padding: 20px;
     background: #fff
 }
@@ -13,6 +13,7 @@
 }
 .button:hover{
     color: #FF7F50;
+    
 }
 .textColor{
     color:#800080;

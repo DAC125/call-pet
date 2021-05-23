@@ -34,11 +34,11 @@ function DoughnutChart (props){
             data={{
 
                 /*labels:['lista','lista'],*/
-                labels:mayoriaEspecie.map(consumo =>(consumo.especie)),
+                labels:mayoriaEspecie.map(consumo =>(consumo.labels)),
                 datasets:[
                     {
                      
-                        data: mayoriaEspecie.map(consumo =>(consumo.count)),
+                        data: mayoriaEspecie.map(consumo =>(consumo.values)),
                         backgroundColor: ['#800080','#FF7F50','#ffaf7a']
                     }
                 ]

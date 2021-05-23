@@ -16,7 +16,8 @@ function Navbar() {
                         
                     </IconButton>
                     <Typography variant="h6" className='title'>
-                        Call - Pet
+                        <h1>Call Pet</h1>
+                        <h5>Sistema administratrivo</h5>
                     </Typography>
                     
                 </Toolbar>
