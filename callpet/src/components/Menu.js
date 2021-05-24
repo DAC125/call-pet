@@ -16,7 +16,7 @@ const img_user = '';
     function Menu() {
         
         return (
-            <div className='root'>
+            <div className='root sideBarShadow'>
                 <div className='credentials'>
                     <div className='imagen'>
                         

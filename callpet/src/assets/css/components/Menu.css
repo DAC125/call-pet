@@ -14,6 +14,7 @@
 .button:hover{
     color: #FF7F50;
 }
+
 .textColor{
     color:#800080;
 }
@@ -27,4 +28,8 @@
     background-color: #ffffff;
     text-align: center;
     
+}
+
+.sideBarShadow{
+
 }

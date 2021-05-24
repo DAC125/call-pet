@@ -17,6 +17,19 @@ app.get("/clientes",async (req, res) => {
     }
 });
 
+app.post("/Clientes", async (req, res) => {
+  try {
+    const { nombre, primer_apellido, segundo_apellido, telefono } = req.body;
+    const newCliente = await pool.query(
+      "INSERT INTO cliente (nombre, primer_apellido, segundo_apellido, telefono) VALUES($1, $2, $3, $4, $5) RETURNING *",
+      [nombre, primer_apellido, segundo_apellido, telefono]
+    );
+
+    res.json(newCliente);
+  } catch (err) {
+    console.error(err.message);
+  }
+});
 
 
 app.get("/dashboard/alimentoConsumo",async (req, res) => {
@@ -45,7 +58,6 @@ app.get("/mascotas",async (req, res) => {
         console.error(err.message);
     }
 });
-
 
 app.listen(5000,() =>{
     console.log("server has started on port 5000")
