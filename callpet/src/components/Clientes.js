@@ -31,9 +31,9 @@ function Clientes(props) {
     return(
 
         <div>
-            <AgregarCliente />
-            
             <Pagination />
+            
+            <AgregarCliente />
         </div>
 
         

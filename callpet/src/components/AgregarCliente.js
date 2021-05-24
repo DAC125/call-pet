@@ -7,23 +7,30 @@ const AgregarCliente = () => {
 	const [modalIsOpen, setModalIsOpen] = useState(false);
     const [searchValue, setSearchValue] = useState("");
     const [cliente, setCliente] = useState([]);
+    const [nombre, setNombre] = useState("");
+    const [primerApellido, setPrimerApellido] = useState("");
+    const [segundoApellido, setSegundoApellido] = useState("");
+    const [telefono, setTelefono] = useState(88888888);
+    const [direccionEntrega, setDireccionEntrega] = useState("");
+    const [notificacion, setNotificacion] = useState(false);
+   	
 
     const onSubmitForm = async e => {
 
     	e.preventDefault();
     	try {
 
-    		const body = {cliente};
+    		const body = {nombre, primerApellido, segundoApellido, telefono, direccionEntrega, notificacion};
     		console.log(body);
     		const response = await fetch(
-    			"http://localhost:5000/clientes", 
+    			"http://localhost:5000/Clientes", 
     		{
     			method: "POST",
     			headers: {"Content-Type": "application/json"},
     			body: JSON.stringify(body)
     		});
 
-    		window.location = "/";
+    		window.location = "/Clientes";
     	} catch (err) {
     		console.error(err.message);
     	}
@@ -50,8 +57,8 @@ const AgregarCliente = () => {
 					    	className="form-control" 
 					    	id="exampleFormControlInput1" 
 					    	placeholder="Juancho"
-					    	value={cliente}
-					    	onChange={e => setCliente(e.target.value)}
+					    	value={nombre}
+					    	onChange={e => setNombre(e.target.value)}
 					    />
 					  </div>
 					  <div className="form-group my-3">
@@ -61,8 +68,8 @@ const AgregarCliente = () => {
 						    className="form-control" 
 						    id="exampleFormControlInput2" 
 						    placeholder="Pérez"
-						    value={cliente}
-					    	onChange={e => setCliente(e.target.value)}
+						    value={primerApellido}
+					    	onChange={e => setPrimerApellido(e.target.value)}
 					    />
 					  </div>
 					  <div class="form-group my-3">
@@ -72,8 +79,8 @@ const AgregarCliente = () => {
 						    class="form-control" 
 						    id="exampleFormControlInput3" 
 						    placeholder="Martínez"
-						    value={cliente}
-					    	onChange={e => setCliente(e.target.value)}
+						    value={segundoApellido}
+					    	onChange={e => setSegundoApellido(e.target.value)}
 					    />
 					  </div>
 					  <div class="form-group my-3">
@@ -83,16 +90,28 @@ const AgregarCliente = () => {
 						    class="form-control" 
 						    id="exampleFormControlInput4" 
 						    placeholder="88888888"
-						    value={cliente}
-					    	onChange={e => setCliente(e.target.value)}
+						    value={telefono}
+					    	onChange={e => setTelefono(e.target.value)}
 					    />
 					  </div>
+					  <div class="form-group my-3">
+					    <label for="exampleFormControlInput1">Dirección de Entrega</label>
+					    <input 
+						    type="text" 
+						    class="form-control" 
+						    id="exampleFormControlInput4" 
+						    placeholder="Por el palo de mango hasta pegar con cerca"
+						    value={direccionEntrega}
+					    	onChange={e => setDireccionEntrega(e.target.value)}
+					    />
+					  </div>
+					  <button className="btn btn-success">Agregar</button>
+					  <button className="btn btn-danger mx-3" type="button" onClick={()=>setModalIsOpen(false)}>Cancelar</button>
                     </form> 
                 </Modal.Body>
 
-                <Modal.Footer>
-                    <button className="btn btn-success">Agregar</button>
-                    <button className="btn btn-danger" onClick={()=>setModalIsOpen(false)}>Cancelar</button>
+                <Modal.Footer id="clienteModalFooter">
+                    
                 </Modal.Footer>
             </Modal>
         </div>

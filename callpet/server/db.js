@@ -18,17 +18,31 @@ app.get("/clientes",async (req, res) => {
 });
 
 app.post("/Clientes", async (req, res) => {
-  try {
-    const { nombre, primer_apellido, segundo_apellido, telefono } = req.body;
-    const newCliente = await pool.query(
-      "INSERT INTO cliente (nombre, primer_apellido, segundo_apellido, telefono) VALUES($1, $2, $3, $4, $5) RETURNING *",
-      [nombre, primer_apellido, segundo_apellido, telefono]
-    );
 
-    res.json(newCliente);
-  } catch (err) {
-    console.error(err.message);
-  }
+
+    try {
+
+        console.log(req.body);
+        const { nombre, primerApellido, segundoApellido, telefono, direccionEntrega, notificacion } = req.body;
+
+        if (nombre === "") throw "Parámetro de nombre de cliente vacío";
+        if (primerApellido === "") throw "Parámetro de primer apellido de cliente vacío";
+        if (segundoApellido === "") throw "Parámetro de segundo apellido de cliente vacío";
+        if (telefono < 20000000 || telefono > 89999999) throw "Parámetro de teléfono de cliente vacío";
+        if (direccionEntrega === "") throw "Parámetro de dirección entrega de cliente vacío";
+        if (notificacion && !notificacion) throw "Parámetro de notificación de cliente vacío";
+
+
+        const newCliente = await pool.query(
+          "INSERT INTO cliente (nombre, primer_apellido, segundo_apellido, telefono, direccion_entrega, notificacion) VALUES($1, $2, $3, $4, $5, $6) RETURNING *",
+          [ nombre, primerApellido, segundoApellido, telefono, direccionEntrega, notificacion ]
+        );
+
+        res.json(newCliente);
+        
+    } catch (err) {
+        console.log("[!] " + err);
+    }
 });
 
 

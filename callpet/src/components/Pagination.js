@@ -11,9 +11,17 @@ import WhatsAppIcon from '@material-ui/icons/WhatsApp';
 import '../assets/css/components/Menu.css'
 import 'fontsource-roboto';
 
+import EditarCliente from "./EditarCliente.js"
 
 function Table({ columns, data }) {
   // Use the state and functions returned from useTable to build your UI
+
+  const editarCliente = () => {
+
+    console.log("Entré");
+    <EditarCliente />
+
+  }
   const {
     getTableProps,
     getTableBodyProps,
@@ -65,7 +73,7 @@ function Table({ columns, data }) {
                   {row.cells.map(cell => {
                     return <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
                   })}
-                  <td> <Button className="buttonEdit" startIcon={<EditIcon />}> </Button> </td>
+                  <td> <Button onClick={<EditarCliente />} className="buttonEdit" startIcon={<EditIcon />}> </Button> </td>
                   <td> <Button className="buttonDelete" startIcon={<DeleteIcon />}> </Button></td>
                   <td> <Button className="buttonNotify" startIcon={<WhatsAppIcon />}> </Button></td>
                 </tr>
@@ -125,7 +133,14 @@ function Pagination() {
             Header: 'Teléfono',
             accessor: 'telefono',
           },
-
+          {
+            Header: 'Dirección',
+            accessor: 'direccion_entrega',
+          },
+          {
+            Header: 'Notificación',
+            accessor: 'notificacion',
+          },
         ],
       },
     ],
