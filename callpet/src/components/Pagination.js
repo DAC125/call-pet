@@ -73,7 +73,7 @@ function Table({ columns, data }) {
                   {row.cells.map(cell => {
                     return <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
                   })}
-                  <td> <Button onClick={<EditarCliente />} className="buttonEdit" startIcon={<EditIcon />}> </Button> </td>
+                  <td> <EditarCliente /> </td>
                   <td> <Button className="buttonDelete" startIcon={<DeleteIcon />}> </Button></td>
                   <td> <Button className="buttonNotify" startIcon={<WhatsAppIcon />}> </Button></td>
                 </tr>
