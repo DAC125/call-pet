@@ -4,17 +4,19 @@ import SearchBar from "./SearchBar.js";
 import {Button} from '@material-ui/core'
 import EditIcon from '@material-ui/icons/Edit';
 
-const EditarCliente = () => {
+const EditarCliente = ({row}) => {
 
 	const [modalIsOpen, setModalIsOpen] = useState(false);
     const [searchValue, setSearchValue] = useState("");
     const [cliente, setCliente] = useState([]);
-    const [nombre, setNombre] = useState("");
-    const [primerApellido, setPrimerApellido] = useState("");
-    const [segundoApellido, setSegundoApellido] = useState("");
-    const [telefono, setTelefono] = useState(88888888);
-    const [direccionEntrega, setDireccionEntrega] = useState("");
-    const [notificacion, setNotificacion] = useState(false);
+    const [nombre, setNombre] = useState(row.original.nombre);
+    const [primerApellido, setPrimerApellido] = useState(row.original.primer_apellido);
+    const [segundoApellido, setSegundoApellido] = useState(row.original.segundo_apellido);
+    const [telefono, setTelefono] = useState(row.original.telefono);
+    const [direccionEntrega, setDireccionEntrega] = useState(row.original.direccion_entrega);
+    const [notificacion, setNotificacion] = useState(row.original.notificacion);
+    const [estado, setEstado] = useState(row.original.estado);
+
    	
 
     const onSubmitForm = async e => {
@@ -22,12 +24,12 @@ const EditarCliente = () => {
     	e.preventDefault();
     	try {
 
-    		const body = {nombre, primerApellido, segundoApellido, telefono, direccionEntrega, notificacion};
+    		const body = {nombre, primerApellido, segundoApellido, telefono, direccionEntrega, notificacion, estado};
     		console.log(body);
     		const response = await fetch(
-    			"http://localhost:5000/EditarClientes", 
+    			`http://localhost:5000/clientes/${row.original.id}`, 
     		{
-    			method: "POST",
+    			method: "PUT",
     			headers: {"Content-Type": "application/json"},
     			body: JSON.stringify(body)
     		});

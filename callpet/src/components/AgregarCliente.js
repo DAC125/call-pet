@@ -13,6 +13,7 @@ const AgregarCliente = () => {
     const [telefono, setTelefono] = useState(88888888);
     const [direccionEntrega, setDireccionEntrega] = useState("");
     const [notificacion, setNotificacion] = useState(false);
+    const [estado, setEstado] = useState(true);
    	
 
     const onSubmitForm = async e => {
@@ -20,7 +21,8 @@ const AgregarCliente = () => {
     	e.preventDefault();
     	try {
 
-    		const body = {nombre, primerApellido, segundoApellido, telefono, direccionEntrega, notificacion};
+    		const body = { nombre, primerApellido, segundoApellido, telefono, direccionEntrega, notificacion, estado };
+    		console.log("Body: ")
     		console.log(body);
     		const response = await fetch(
     			"http://localhost:5000/Clientes", 
