@@ -1,5 +1,5 @@
 import React, {useEffect,useState} from 'react';
-import { useTable, usePagination } from 'react-table';
+import { useTable, usePagination, useFilters, useGlobalFilter, useAsyncDebounce } from 'react-table'
 import Box from '@material-ui/core/Box';
 import {Button} from '@material-ui/core'
 import { Icon } from '@material-ui/core';
@@ -44,6 +44,36 @@ function CellNotificacion({ value, columnProps } ){
   </Box>
 }
 
+function GlobalFilter({
+  preGlobalFilteredRows,
+  globalFilter,
+  setGlobalFilter,
+}) {
+  const count = preGlobalFilteredRows.length
+  const [value, setValue] = React.useState(globalFilter)
+  const onChange = useAsyncDebounce(value => {
+    setGlobalFilter(value || undefined)
+  }, 200)
+
+  return (
+    <span>
+      Search:{' '}
+      <input
+        value={value || ""}
+        onChange={e => {
+          setValue(e.target.value);
+          onChange(e.target.value);
+        }}
+        placeholder={`${count} records...`}
+        style={{
+          fontSize: '1.1rem',
+          border: '0',
+        }}
+      />
+    </span>
+  )
+}
+
 function Table({ columns, data }) {
   // Use the state and functions returned from useTable to build your UI
 
@@ -75,9 +105,13 @@ function Table({ columns, data }) {
     pageOptions,
     pageCount,
     gotoPage,
+    visibleColumns,
     nextPage,
     previousPage,
     setPageSize,
+    state,
+    preGlobalFilteredRows,
+    setGlobalFilter,
     state: { pageIndex, pageSize },
   } = useTable(
     {
@@ -85,6 +119,7 @@ function Table({ columns, data }) {
       data,
       initialState: { pageIndex: 0 },
     },
+    useGlobalFilter,
     usePagination
   )
 
@@ -115,6 +150,20 @@ function Table({ columns, data }) {
               </tr>
 
             ))}
+            <tr>
+              <th
+                colSpan={visibleColumns.length}
+                style={{
+                  textAlign: 'left',
+                }}
+              >
+                <GlobalFilter
+                  preGlobalFilteredRows={preGlobalFilteredRows}
+                  globalFilter={state.globalFilter}
+                  setGlobalFilter={setGlobalFilter}
+                />
+              </th>
+            </tr>
 
           </thead>
           <tbody {...getTableBodyProps()}>
