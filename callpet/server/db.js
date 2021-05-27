@@ -237,6 +237,144 @@ app.delete("/pedidos/:id", async (req, res) => {
 
 
 
+
+
+app.get("/alimentos",async (req, res) => {
+    try {
+        const allAlimentos = await pool.query("SELECT * FROM alimento ORDER BY id_alimento ASC");
+        res.json(allAlimentos.rows)
+        console.log(allAlimentos.rows);
+    } catch (err) {
+        console.error(err.message);
+    }
+});
+
+app.post("/Alimentos", async (req, res) => {
+
+
+    try {
+
+        console.log(req.body);
+        const { marca, presentacion, consumoDiario } = req.body;
+
+        if (marca === "") throw "Parámetro de nombre de mascota vacío";
+        if (presentacion < 1) throw "Parámetro de marca no puede ser menor o igual a 0";
+        if (consumoDiario < 1) throw "Parámetro de consumo diario no puede ser menor o igual a 0";
+
+        const newAlimento = await pool.query(
+          "INSERT INTO alimento (marca, presentacion, consumo_diario) VALUES($1, $2, $3) RETURNING *",
+          [ marca, presentacion, consumoDiario ]
+        );
+
+        res.json(newAlimento);
+        
+    } catch (err) {
+        console.log("[!] " + err);
+    }
+});
+
+app.put("/alimentos/:id", async (req, res) => {
+  try {
+    console.log(req.body);
+    const { id } = req.params;
+    console.log(id);
+    const { marca, presentacion, consumoDiario } = req.body;
+    const updateAlimento = await pool.query(
+      "UPDATE alimento SET marca = $1, presentacion = $2, consumo_diario = $3 WHERE id_alimento = $4",
+      [ marca, presentacion, consumoDiario, id ]
+    );
+
+    res.json("Alimento fue actualizado");
+  } catch (err) {
+    console.error(err.message);
+  }
+});
+
+app.delete("/alimentos/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    console.log(id);
+    const deleteTodo = await pool.query("DELETE FROM alimento WHERE id_alimento = $1", [
+      id
+    ]);
+    res.json("Alimento was deleted!");
+  } catch (err) {
+    console.log(err.message);
+  }
+});
+
+
+
+
+
+
+
+app.get("/proveedores",async (req, res) => {
+    try {
+        const allProveedores = await pool.query("SELECT p.id_proveedor, p.nombre_proveedor, p.telefono, p.correo, p.id_alimento, a.marca FROM proveedor p INNER JOIN alimento a ON p.id_alimento = a.id_alimento");
+        res.json(allProveedores.rows)
+        console.log(allProveedores.rows);
+    } catch (err) {
+        console.error(err.message);
+    }
+});
+
+app.post("/Proveedores", async (req, res) => {
+
+
+    try {
+
+        console.log(req.body);
+        const { nombreProveedor, telefono, correo, idAlimento } = req.body;
+
+        if (nombreProveedor === "") throw "Parámetro de nombre de proveedor vacío";
+        if (telefono < 20000000 || telefono > 89999999) throw "Parámetro de teléfono de cliente no está en los rangos";
+        if (correo === "") throw "Parámetro de correo de proveedor vacío";
+        if (idAlimento < 1) throw "Parámetro de id alimento no puede ser menor o igual a 0";
+
+        const newProveedor = await pool.query(
+          "INSERT INTO proveedor (nombre_proveedor, telefono, correo, id_alimento) VALUES($1, $2, $3, $4) RETURNING *",
+          [ nombreProveedor, telefono, correo, idAlimento ]
+        );
+
+        res.json(newProveedor);
+        
+    } catch (err) {
+        console.log("[!] " + err);
+    }
+});
+
+app.put("/proveedores/:id", async (req, res) => {
+  try {
+    console.log(req.body);
+    const { id } = req.params;
+    console.log(id);
+    const { nombreProveedor, telefono, correo, idAlimento } = req.body;
+    const updateProveedor = await pool.query(
+      "UPDATE proveedor SET nombre_proveedor = $1, telefono = $2, correo = $3, id_alimento = $4 WHERE id_proveedor = $5",
+      [ nombreProveedor, telefono, correo, idAlimento, id ]
+    );
+
+    res.json("Proveedor fue actualizado");
+  } catch (err) {
+    console.error(err.message);
+  }
+});
+
+app.delete("/proveedores/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    console.log(id);
+    const deleteTodo = await pool.query("DELETE FROM proveedor WHERE id_proveedor = $1", [
+      id
+    ]);
+    res.json("Proveedor was deleted!");
+  } catch (err) {
+    console.log(err.message);
+  }
+});
+
+
 app.listen(5000,() =>{
     console.log(">>> Server has started on port 5000")
 });
