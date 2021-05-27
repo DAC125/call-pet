@@ -37,9 +37,7 @@ function Container(props) {
                         </BrowserRouter>
                     
                     </Grid>
-                    
                 </Grid>
-                
             </Grid>
         </div>
     )
