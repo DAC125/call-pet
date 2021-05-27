@@ -1,30 +1,38 @@
 .root{
-    height: 130VH;
+    height: 100%;
     padding: 20px;
     background: #fff
 }
+
 .credentials{
     padding-bottom: 50px;
 }
+
 .button{
     padding: 14px 10px!important;
     background: #fff;
     text-transform: unset!important;
 }
+
 .button:hover{
     color: #FF7F50;
 }
+
 .textColor{
-    color:#800080;
+    color:#4f5b62;
 }
 .textName{
     
     text-align:center;
-    color: #00458c
+    color: #4f5b62
 }
 .imagen{
     border-radius: 50%;
     background-color: #ffffff;
     text-align: center;
     
+}
+
+.sideBarShadow{
+
 }
