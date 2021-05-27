@@ -167,6 +167,76 @@ app.delete("/mascotas/:id", async (req, res) => {
 
 
 
+
+app.get("/pedidos",async (req, res) => {
+    try {
+        const allPedidos = await pool.query("SELECT p.id_pedido, p.fecha_compra, p.fecha_vencimiento, p.consumo_dias, p.tiempo_aviso, p.id_cliente, c.nombre FROM pedido p INNER JOIN cliente c ON p.id_cliente = c.id");
+        res.json(allPedidos.rows)
+        console.log(allPedidos.rows);
+    } catch (err) {
+        console.error(err.message);
+    }
+});
+
+
+app.post("/Pedidos", async (req, res) => {
+
+
+    try {
+
+        console.log(req.body);
+        const { fechaCompra, fechaVencimiento, consumoDias, tiempoAviso, idCliente } = req.body;
+
+        if (fechaCompra === "") throw "Parámetro de nombre de mascota vacío";
+        if (fechaVencimiento === "") throw "Parámetro de especie de mascota vacío";
+        if (consumoDias < 0) throw "Parámetro de raza de mascota vacío";
+        if (tiempoAviso < 0) throw "Parámetro de ID de cliente no está en los rangos";
+        if (idCliente < 0) throw "Parámetro de ID de cliente no está en los rangos";
+
+        const newPedido = await pool.query(
+          "INSERT INTO pedido (fecha_compra, fecha_vencimiento, consumo_dias, tiempo_aviso, id_cliente) VALUES($1, $2, $3, $4, $5) RETURNING *",
+          [ fechaCompra, fechaVencimiento, consumoDias, tiempoAviso, idCliente ]
+        );
+
+        res.json(newPedido);
+        
+    } catch (err) {
+        console.log("[!] " + err);
+    }
+});
+
+app.put("/pedidos/:id", async (req, res) => {
+  try {
+    console.log(req.body);
+    const { id } = req.params;
+    console.log(id);
+    const { fechaCompra, fechaVencimiento, consumoDias, tiempoAviso, idCliente } = req.body;
+    const updatePedido = await pool.query(
+      "UPDATE pedido SET fecha_compra = $1, fecha_vencimiento = $2, consumo_dias = $3, tiempo_aviso = $4, id_cliente = $5 WHERE id_pedido = $6",
+      [ fechaCompra, fechaVencimiento, consumoDias, tiempoAviso, idCliente, id ]
+    );
+
+    res.json("Pedido fue actualizado");
+  } catch (err) {
+    console.error(err.message);
+  }
+});
+
+app.delete("/pedidos/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    console.log(id);
+    const deleteTodo = await pool.query("DELETE FROM pedido WHERE id_pedido = $1", [
+      id
+    ]);
+    res.json("Pedido was deleted!");
+  } catch (err) {
+    console.log(err.message);
+  }
+});
+
+
+
 app.listen(5000,() =>{
     console.log(">>> Server has started on port 5000")
 });
