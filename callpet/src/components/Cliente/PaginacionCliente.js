@@ -10,7 +10,7 @@ import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
 import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
 import WhatsAppIcon from '@material-ui/icons/WhatsApp';
-import '../assets/css/components/Menu.css'
+import '../../assets/css/components/Menu.css'
 import 'fontsource-roboto';
 
 import EditarCliente from "./EditarCliente.js";

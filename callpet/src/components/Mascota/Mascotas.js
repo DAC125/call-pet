@@ -1,29 +1,29 @@
 import React, {useEffect,useState} from 'react';
 import 'fontsource-roboto';
-import '../assets/css/components/Clientes.css';
+import '../../assets/css/components/Clientes.css';
 
 
 
-function Clientes(props) {
+function Mascotas(props) {
 
-    const [clientes, setClientes] = useState([]);
+    const [mascotas, setMascotas] = useState([]);
 
-    const getClientes = async() => {
+    const getMascotas = async() => {
         try {
             const response = await fetch("http://localhost:5000/mascotas")
             const jasonData = await response.json();
 
-            setClientes(jasonData);
+            setMascotas(jasonData);
         } catch (err) {
             console.error(err.message);
         }
     }
 
     useEffect(()=> {
-        getClientes();
+        getMascotas();
     }, []);
     
-    console.log(clientes);
+    console.log(mascotas);
     return(
         <div>
            <table className="tableList table">
@@ -34,10 +34,10 @@ function Clientes(props) {
                     </tr>
                 </thead>
                 <tbody>
-                {clientes.map(cliente =>(
+                {mascotas.map(mascota =>(
                         <tr>
-                        <th scope="row">{cliente.id}</th>
-                        <td>{cliente.nombre}</td>
+                        <th scope="row">{mascota.id_mascota}</th>
+                        <td>{mascota.nombre_mascota}</td>
                         </tr>
                     ))}
                     
@@ -48,4 +48,4 @@ function Clientes(props) {
 
     )
 }
-export default Clientes;
+export default Mascotas;

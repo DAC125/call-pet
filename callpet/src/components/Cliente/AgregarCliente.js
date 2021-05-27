@@ -1,22 +1,18 @@
 import React, {Fragment, useEffect, useState} from 'react';
 import {Modal} from 'react-bootstrap';
-import SearchBar from "./SearchBar.js";
-import {Button} from '@material-ui/core'
-import EditIcon from '@material-ui/icons/Edit';
 
-const EditarCliente = ({row}) => {
+const AgregarCliente = () => {
 
 	const [modalIsOpen, setModalIsOpen] = useState(false);
     const [searchValue, setSearchValue] = useState("");
     const [cliente, setCliente] = useState([]);
-    const [nombre, setNombre] = useState(row.original.nombre);
-    const [primerApellido, setPrimerApellido] = useState(row.original.primer_apellido);
-    const [segundoApellido, setSegundoApellido] = useState(row.original.segundo_apellido);
-    const [telefono, setTelefono] = useState(row.original.telefono);
-    const [direccionEntrega, setDireccionEntrega] = useState(row.original.direccion_entrega);
-    const [notificacion, setNotificacion] = useState(row.original.notificacion);
-    const [estado, setEstado] = useState(row.original.estado);
-
+    const [nombre, setNombre] = useState("");
+    const [primerApellido, setPrimerApellido] = useState("");
+    const [segundoApellido, setSegundoApellido] = useState("");
+    const [telefono, setTelefono] = useState(88888888);
+    const [direccionEntrega, setDireccionEntrega] = useState("");
+    const [notificacion, setNotificacion] = useState(false);
+    const [estado, setEstado] = useState(true);
    	
 
     const onSubmitForm = async e => {
@@ -24,12 +20,13 @@ const EditarCliente = ({row}) => {
     	e.preventDefault();
     	try {
 
-    		const body = {nombre, primerApellido, segundoApellido, telefono, direccionEntrega, notificacion, estado};
+    		const body = { nombre, primerApellido, segundoApellido, telefono, direccionEntrega, notificacion, estado };
+    		console.log("Body: ")
     		console.log(body);
     		const response = await fetch(
-    			`http://localhost:5000/clientes/${row.original.id}`, 
+    			"http://localhost:5000/Clientes", 
     		{
-    			method: "PUT",
+    			method: "POST",
     			headers: {"Content-Type": "application/json"},
     			body: JSON.stringify(body)
     		});
@@ -42,17 +39,19 @@ const EditarCliente = ({row}) => {
 
 	return (
 
-		<div>
+		<div className="sectionHeader">
 
-			<Button onClick={()=>setModalIsOpen(true)} className="buttonEdit" startIcon={<EditIcon />}> </Button>
+            <button className="buttonColor mx-3 my-3" onClick={()=>setModalIsOpen(true)}>
+                +  Agregar Cliente
+            </button>
 
-	        <Modal show={modalIsOpen}>
+            <Modal show={modalIsOpen}>
 
-	            <Modal.Header>Editar Cliente Existente</Modal.Header>
+                <Modal.Header>Agregar Nuevo Cliente</Modal.Header>
 
-	            <Modal.Body>
-	               <form onSubmit={onSubmitForm}>
-	                  <div class="form-group md-3">
+                <Modal.Body>
+                   <form onSubmit={onSubmitForm}>
+                      <div class="form-group md-3">
 					    <label for="exampleFormControlInput1">Nombre</label>
 					    <input 
 					    	type="text" 
@@ -107,18 +106,17 @@ const EditarCliente = ({row}) => {
 					    	onChange={e => setDireccionEntrega(e.target.value)}
 					    />
 					  </div>
-					  <button className="btn btn-success">Editar</button>
+					  <button className="btn btn-success">Agregar</button>
 					  <button className="btn btn-danger mx-3" type="button" onClick={()=>setModalIsOpen(false)}>Cancelar</button>
-	                </form> 
-	            </Modal.Body>
+                    </form> 
+                </Modal.Body>
 
-	            <Modal.Footer id="clienteModalFooter">
-	                
-	            </Modal.Footer>
-	        </Modal>
-	    </div>
-
+                <Modal.Footer id="clienteModalFooter">
+                    
+                </Modal.Footer>
+            </Modal>
+        </div>
 	)
 };
 
-export default EditarCliente;
+export default AgregarCliente;

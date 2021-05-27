@@ -99,8 +99,9 @@ app.get("/dashboard/mayoriaEspecies",async (req, res) => {
 
 app.get("/mascotas",async (req, res) => {
     try {
-        const allMascotas = await pool.query("select * from mascota");
+        const allMascotas = await pool.query("SELECT m.id_mascota, m.nombre_mascota, m.especie, m.raza, c.nombre, a.marca FROM mascota m INNER JOIN cliente c ON m.id_cliente = c.id INNER JOIN alimento a ON m.id_alimento = a.id");
         res.json(allMascotas.rows)
+        console.log(allMascotas.rows);
     } catch (err) {
         console.error(err.message);
     }

@@ -1,9 +1,9 @@
 import React, {Fragment, useEffect, useState} from 'react';
 import 'fontsource-roboto';
-import '../assets/css/components/Clientes.css';
+import '../../assets/css/components/Clientes.css';
 import {render} from 'react-dom';
 import ReactPaginate from 'react-paginate';
-import Pagination from "./Pagination.js";
+import Pagination from "./PaginacionCliente.js";
 import AgregarCliente from "./AgregarCliente.js"
 
 

@@ -1,7 +1,6 @@
-  
 import React from 'react';
 import 'fontsource-roboto';
-import '../assets/css/components/Dashboard.css';
+import '../../assets/css/components/Dashboard.css';
 import {Grid} from '@material-ui/core';
 import LineChart from './LineChart'
 import DoughnutChart from './DoughnutChart'
