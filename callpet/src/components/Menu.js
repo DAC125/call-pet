@@ -82,14 +82,14 @@ const img_user = '';
                 </Button>
                 </div>
 
-                <div>
+                {/**<div>
                 <Button
                     className='button'
                     startIcon={<SettingsRoundedIcon />}
                     href='/Configuracion'>
                     <h5 className='textColor'>Configuracion</h5>
                 </Button>
-                </div>
+                </div>**/}
             </div>
         );
     }

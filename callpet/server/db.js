@@ -77,11 +77,37 @@ app.put("/clientes/switch_client_state/:id", async (req, res) => {
   }
 });
 
+app.get("/dashboard/cantMascotas",async (req, res) => {
+  try {
+      const cantMascotas = await pool.query("select count(id_mascota) as values from mascota");
+      res.json(cantMascotas.rows)
+  } catch (err) {
+      console.error(err.message);
+  }
+});
 
+
+app.get("/dashboard/mayoriaProveedores",async (req, res) => {
+  try {
+      const mayoriaProveedores = await pool.query("select nombre_proveedor as labels, count(nombre_proveedor) as values from proveedor group by nombre_proveedor order by values desc limit 5");
+      res.json(mayoriaProveedores.rows)
+  } catch (err) {
+      console.error(err.message);
+  }
+});
+
+app.get("/dashboard/cantClientes",async (req, res) => {
+  try {
+      const cantClientes = await pool.query("select count(id) as values from cliente");
+      res.json(cantClientes.rows)
+  } catch (err) {
+      console.error(err.message);
+  }
+});
 
 app.get("/dashboard/alimentoConsumo",async (req, res) => {
     try {
-        const alimentoConsumo = await pool.query("select a.marca ,count(m.id_alimento) from mascota m, alimento a where m.id_alimento = a.id group by marca");
+        const alimentoConsumo = await pool.query("select a.marca ,count(m.id_alimento) from mascota m, alimento a where m.id_alimento = a.id_alimento group by marca");
         res.json(alimentoConsumo.rows)
     } catch (err) {
         console.error(err.message);
