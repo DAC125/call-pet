@@ -99,13 +99,73 @@ app.get("/dashboard/mayoriaEspecies",async (req, res) => {
 
 app.get("/mascotas",async (req, res) => {
     try {
-        const allMascotas = await pool.query("SELECT m.id_mascota, m.nombre_mascota, m.especie, m.raza, c.nombre, a.marca FROM mascota m INNER JOIN cliente c ON m.id_cliente = c.id INNER JOIN alimento a ON m.id_alimento = a.id");
+        const allMascotas = await pool.query("SELECT m.id_mascota, m.nombre_mascota, m.especie, m.raza, m.id_cliente, c.nombre, a.marca, a.id_alimento FROM mascota m INNER JOIN cliente c ON m.id_cliente = c.id INNER JOIN alimento a ON m.id_alimento = a.id_alimento");
         res.json(allMascotas.rows)
         console.log(allMascotas.rows);
     } catch (err) {
         console.error(err.message);
     }
 });
+
+
+app.post("/Mascotas", async (req, res) => {
+
+
+    try {
+
+        console.log(req.body);
+        const { nombreMascota, especie, raza, idCliente, idAlimento } = req.body;
+
+        if (nombreMascota === "") throw "Parámetro de nombre de mascota vacío";
+        if (especie === "") throw "Parámetro de especie de mascota vacío";
+        if (raza === "") throw "Parámetro de raza de mascota vacío";
+        if (idCliente < 0) throw "Parámetro de ID de cliente no está en los rangos";
+        if (idAlimento < 0) throw "Parámetro de ID de alimento no está en los rangos";
+
+        const newMascota = await pool.query(
+          "INSERT INTO mascota (nombre_mascota, especie, raza, id_cliente, id_alimento) VALUES($1, $2, $3, $4, $5) RETURNING *",
+          [ nombreMascota, especie, raza, idCliente, idAlimento ]
+        );
+
+        res.json(newMascota);
+        
+    } catch (err) {
+        console.log("[!] " + err);
+    }
+});
+
+
+app.put("/mascotas/:id", async (req, res) => {
+  try {
+    console.log(req.body);
+    const { id } = req.params;
+    console.log(id);
+    const { nombreMascota, especie, raza, idCliente, idAlimento } = req.body;
+    const updateMascota = await pool.query(
+      "UPDATE mascota SET nombre_mascota = $1, especie = $2, raza = $3, id_cliente = $4, id_alimento = $5 WHERE id_mascota = $6",
+      [ nombreMascota, especie, raza, idCliente, idAlimento, id ]
+    );
+
+    res.json("Mascota fue actualizada");
+  } catch (err) {
+    console.error(err.message);
+  }
+});
+
+app.delete("/mascotas/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    console.log(id);
+    const deleteTodo = await pool.query("DELETE FROM mascota WHERE id_mascota = $1", [
+      id
+    ]);
+    res.json("Mascota was deleted!");
+  } catch (err) {
+    console.log(err.message);
+  }
+});
+
+
 
 app.listen(5000,() =>{
     console.log(">>> Server has started on port 5000")

@@ -14,42 +14,15 @@ import FastRewindIcon from '@material-ui/icons/FastRewind';
 import FastForwardIcon from '@material-ui/icons/FastForward';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
-import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
+import DeleteIcon from '@material-ui/icons/Delete';
 import WhatsAppIcon from '@material-ui/icons/WhatsApp';
+
 
 //* Local application imports *//
 import '../../assets/css/components/Menu.css'
-import EditarCliente from "./EditarCliente.js";
-import CambiarEstadoCliente from "./CambiarEstadoCliente.js";
+import EditarMascota from "./EditarMascota.js";
+import EliminarMascota from "./EliminarMascota.js";
 
-
-function CellEstado({ value, columnProps } ){
-  
-  return <Box display="flex" justifyContent="center">
-  {
-    value ?
-      <FiberManualRecordIcon style={{ color: green[500] }} fontSize="small"/>
-    
-    :
-      <FiberManualRecordIcon style={{ color: red[500] }} fontSize="small"/>
-    
-
-  }
-
-  </Box>
-}
-
-function CellNotificacion({ value, columnProps } ){
-  
-  return <Box display="flex" justifyContent="center">
-  {
-    value ?
-      <FiberManualRecordIcon style={{ color: green[500] }} fontSize="small"/>
-    :
-      <FiberManualRecordIcon style={{ color: red[500] }} fontSize="small"/>
-  }
-  </Box>
-}
 
 function GlobalFilter({
   preGlobalFilteredRows,
@@ -71,7 +44,7 @@ function GlobalFilter({
           setValue(e.target.value);
           onChange(e.target.value);
         }}
-        placeholder={`${count} clientes...`}
+        placeholder={`${count} mascotas...`}
         style={{
           fontSize: '1.1rem',
           border: '0',
@@ -82,7 +55,6 @@ function GlobalFilter({
 }
 
 function Table({ columns, data }) {
-
 
   const {
     getTableProps,
@@ -128,11 +100,9 @@ function Table({ columns, data }) {
                   index === 1 ? (
                   <>
                     <th>Editar</th>
-                    <th>Cambiar Estado</th> 
-                    <th>Notificar</th> 
+                    <th>Eliminar</th> 
                   </>):
                   <>
-                    <th/>
                     <th/>
                     <th/>
                   </> 
@@ -169,9 +139,8 @@ function Table({ columns, data }) {
                   {row.cells.map(cell => {
                     return <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
                   })}
-                  <td> <EditarCliente row={row}/> </td>
-                  <td> <CambiarEstadoCliente row={row}/> </td>
-                  <td> <Button className="buttonNotify" startIcon={<WhatsAppIcon />}> </Button></td>
+                  <td> <EditarMascota row={row}/> </td>
+                  <td> <EliminarMascota row={row}/> </td>
                 </tr>
               )
             })}
@@ -202,79 +171,64 @@ function Table({ columns, data }) {
 
 function Pagination() {
 
-  const [clientes, setClientes] = useState([]);
+  	const [mascotas, setMascotas] = useState([]);
 
-  const getClientes = async() => {
-      try {
-          const response = await fetch("http://localhost:5000/clientes")
-          const jasonData = await response.json();
+	const getMascotas = async() => {
+	try {
+	    const response = await fetch("http://localhost:5000/mascotas")
+	    const jasonData = await response.json();
 
-          setClientes(jasonData);
-      } catch (err) {
-          console.error(err.message);
-      }
-  }
+	    setMascotas(jasonData);
+	} catch (err) {
+	    console.error(err.message);
+	}
+	}
 
-  console.log(clientes);
+	useEffect(()=> {
+		getMascotas();
+	}, []);
 
-  useEffect(()=> {
-    getClientes();
-  }, []);
+	console.log(mascotas);
 
-  const columns = React.useMemo(
-    () => [
-      {
-        Header: 'Clientes',
-        columns: [
-          {
-            Header: 'ID',
-            accessor: 'id',
-          },
-          {
-            Header: 'Nombre',
-            accessor: 'nombre',
-          },
-          {
-            Header: 'Primer Apellido',
-            accessor: 'primer_apellido',
-          },
-          {
-            Header: 'Segundo Apellido',
-            accessor: 'segundo_apellido',
-          },
-          {
-            Header: 'Teléfono',
-            accessor: 'telefono',
-          },
-          {
-            Header: 'Dirección',
-            accessor: 'direccion_entrega',
-          },
-          {
-            Header: 'Notificación',
-            accessor: 'notificacion',
-            Cell: CellNotificacion,
-          },
-          {
-            Header: 'Estado',
-            accesor: 'estado',
-            Cell: e => {
-              
-              return <CellEstado value={e.row.original.estado}/>
-            },
+	const columns = React.useMemo(
+	() => [
+	  {
+	    Header: 'Mascotas',
+	    columns: [
+	      {
+	        Header: 'ID',
+	        accessor: 'id_mascota',
+	      },
+	      {
+	        Header: 'Nombre',
+	        accessor: 'nombre_mascota',
+	      },
+	      {
+	        Header: 'Especie',
+	        accessor: 'especie',
+	      },
+	      {
+	        Header: 'Raza',
+	        accessor: 'raza',
+	      },
+	      {
+	        Header: 'Nombre Cliente',
+	        accessor: 'nombre',
+	      },
+	      {
+	        Header: 'Marca Alimento',
+	        accessor: 'marca',
+	      },
+	    ],
+	  },
+	],
+	[]
+  	)
 
-          },
-        ],
-      },
-    ],
-    []
-  )
-
-  return (
+  	return (
       
-      <Table columns={columns} data={clientes} />
-    
-  )
+    	<Table columns={columns} data={mascotas} />
+    )
 }
 
 export default Pagination
