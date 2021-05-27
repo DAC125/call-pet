@@ -4,9 +4,9 @@ import Navbar from './Navbar';
 import 'fontsource-roboto';
 import 'fontsource-roboto';
 import Menu from './Menu';
-import Clientes from './Cliente/Clientes';
-import Dashboard from './Dashboard/Dashboard';
-import Mascotas from './Mascota/Mascotas';
+import Clientes from './Clientes';
+import Dashboard from './Dashboard';
+import Mascotas from './Mascotas';
 import {BrowserRouter, Switch, Route} from 'react-router-dom';
 
 

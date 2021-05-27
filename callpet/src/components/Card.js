@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../assets/css/components/Card.css'
+import '../assets/css/components/Card.css'
 import {Grid} from '@material-ui/core';
 
 function Card(props) {
