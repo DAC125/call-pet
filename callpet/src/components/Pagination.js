@@ -57,14 +57,14 @@ function GlobalFilter({
 
   return (
     <span>
-      Search:{' '}
+      Filtro:{' '}
       <input
         value={value || ""}
         onChange={e => {
           setValue(e.target.value);
           onChange(e.target.value);
         }}
-        placeholder={`${count} records...`}
+        placeholder={`${count} clientes...`}
         style={{
           fontSize: '1.1rem',
           border: '0',
@@ -163,6 +163,11 @@ function Table({ columns, data }) {
                   setGlobalFilter={setGlobalFilter}
                 />
               </th>
+              <>
+                <th/>
+                <th/>
+                <th/>
+              </> 
             </tr>
 
           </thead>
