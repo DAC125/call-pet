@@ -32,6 +32,6 @@ npm start
 * Supplier
 <img width="1676" alt="Screen Shot 2022-10-05 at 14 47 46" src="https://user-images.githubusercontent.com/42823040/194160414-dab7e2f8-eb46-48e6-b690-a278ac2e7c60.png">
 
-/* Databse not supplied on this repo/*
+\* Databse not supplied on this repo\*
 
 
