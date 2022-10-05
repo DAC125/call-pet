@@ -29,6 +29,7 @@ npm start
 * Foot
 <img width="1680" alt="Screen Shot 2022-10-05 at 14 46 45" src="https://user-images.githubusercontent.com/42823040/194160210-43578704-ddb1-4be1-b9b5-0f0fc4822613.png">
 
-* Supplier<img width="1676" alt="Screen Shot 2022-10-05 at 14 47 46" src="https://user-images.githubusercontent.com/42823040/194160414-dab7e2f8-eb46-48e6-b690-a278ac2e7c60.png">
+* Supplier
+<img width="1676" alt="Screen Shot 2022-10-05 at 14 47 46" src="https://user-images.githubusercontent.com/42823040/194160414-dab7e2f8-eb46-48e6-b690-a278ac2e7c60.png">
 
 
